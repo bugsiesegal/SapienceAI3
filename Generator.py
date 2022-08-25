@@ -12,4 +12,4 @@ def sim(x):
     for i in range(100):
         rewards += simon_game(brain)
 
-    return sum(rewards) / 100
+    return rewards / 100
