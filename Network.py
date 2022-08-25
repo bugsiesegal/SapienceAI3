@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 
 from typing import Tuple
-import autograd.numpy as np
+import jax.numpy as np
 
 
 def clamp(num, minimum=1.0, maximum=4.0):
