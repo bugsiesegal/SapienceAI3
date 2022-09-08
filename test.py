@@ -1,14 +1,16 @@
-import jax.numpy as np
-from autograd import elementwise_grad as egrad
-from jax import grad, jit, vmap
+import numpy as np
+from jax import grad
 
 from Generator import sim
 
-grad_sim = jit(vmap(sim))
+grad_sim = grad(sim)
 
-a = np.full((2, 12, 12), 0.9999)
-b = np.full((2, 12, 12), 1.0001)
+while True:
 
-print((sim(a) - sim(b))/0.0002)
+    initial_state = np.random.rand(2, 12, 12) * 10 - 5
 
-print(grad_sim(np.full((2, 12, 12), 1.0)))
+    gradient = grad_sim(initial_state)
+
+    if np.all(gradient != 0.0):
+        print(gradient)
+        break
